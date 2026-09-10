@@ -42,4 +42,32 @@ public class HelloController {
                 "offset", time.getOffset().toString()
         );
     }
+    @GetMapping("/api/bmi")
+    public BmiResult bmi(
+            @RequestParam double weight,
+            @RequestParam double height) {
+
+        double bmi = weight / (height * height);
+
+        String category;
+
+        if (bmi < 18.5) {
+            category = "Underweight";
+        } else if (bmi < 25) {
+            category = "Normal weight";
+        } else if (bmi < 30) {
+            category = "Overweight";
+        } else {
+            category = "Obesity";
+        }
+
+        return new BmiResult(weight, height, bmi, category);
+    }
+
+    public record BmiResult(
+            double weight,
+            double height,
+            double bmi,
+            String category
+    ) {}
 }
