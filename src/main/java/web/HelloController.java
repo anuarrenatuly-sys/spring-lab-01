@@ -29,4 +29,17 @@ public class HelloController {
                 "timestamp", LocalDateTime.now().toString()
         );
     }
+    @GetMapping("/api/time")
+    public Map<String, Object> getTime(
+            @RequestParam(defaultValue = "Asia/Almaty") String zone) {
+
+        java.time.ZoneId zoneId = java.time.ZoneId.of(zone);
+        java.time.ZonedDateTime time = java.time.ZonedDateTime.now(zoneId);
+
+        return Map.of(
+                "zone", zone,
+                "time", time.toLocalDateTime().toString(),
+                "offset", time.getOffset().toString()
+        );
+    }
 }
