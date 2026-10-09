@@ -1,0 +1,23 @@
+
+package it1sso2503is.springlab01.aspect;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class Pointcuts {
+
+    @Pointcut("within(it1sso2503is.springlab01.service..*)")
+    public void serviceLayer() {
+    }
+
+    @Pointcut("execution(public * *(..))")
+    public void publicMethod() {
+    }
+
+    @Pointcut("serviceLayer() && publicMethod()")
+    public void serviceOperation() {
+    }
+}
