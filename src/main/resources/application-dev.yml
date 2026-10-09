@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+app:
+  mail:
+    enabled: false
+    retry-count: 1
+
+logging:
+  level:
+    it1sso2503is: DEBUG
